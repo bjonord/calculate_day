@@ -1,4 +1,6 @@
-# Just a quick something that I threw together to sum my day at work from 6 parameters.
+# Calculate Day
+
+## Just a quick something that I threw together to sum my day at work from 6 parameters.
 
   - When the day started. (24h -> hh:mm)
   - When the lunch started. (24h -> hh:mm)
