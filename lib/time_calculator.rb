@@ -1,5 +1,5 @@
 class TimeCalculator
-  attr_reader :hours, :comment
+  attr_reader :hours, :comment, :errors
 
   def self.calculate(break_time = nil, comment = nil, options = {})
     TimeCalculator.new(break_time, comment, options)
@@ -9,8 +9,11 @@ class TimeCalculator
     @options = options
     @break_time = break_time.nil? ? 0 : break_time
     @comment = comment
-    @hours = find_hours if test_inputs
+
+    set_hours
   end
+
+  private
 
   def test_inputs
     checked = @options.map do |k, v|
@@ -18,37 +21,43 @@ class TimeCalculator
     end
 
     if checked.include? nil
-      false
+      raise ArgumentError, 'You are doing it wrong!'
     else
       true
     end
   end
 
   def find_hours
-    @new_options = @options.inject({}) do |hash, option|
-      hash[option.first] = option.last.split(":")
+    new_options = @options.inject({}) do |hash, (key, val)|
+      hash[key] = val.split(":")
       hash
     end
-
+    @options = new_options
     total
   end
 
-  private
+  def set_hours
+    begin
+      @hours = find_hours if test_inputs
+    rescue ArgumentError => e
+      @errors = e.message
+    end
+  end
 
   def start_of_day
-    (@new_options[:day_start].first.to_i * 60) + @new_options[:day_start].last.to_i
+    (@options[:day_start].first.to_i * 60) + @options[:day_start].last.to_i
   end
 
   def end_of_day
-    (@new_options[:day_end].first.to_i * 60) + @new_options[:day_end].last.to_i
+    (@options[:day_end].first.to_i * 60) + @options[:day_end].last.to_i
   end
 
   def lunch_end
-    (@new_options[:lunch_end].first.to_i * 60) + @new_options[:lunch_end].last.to_i
+    (@options[:lunch_end].first.to_i * 60) + @options[:lunch_end].last.to_i
   end
 
   def lunch_start
-    (@new_options[:lunch_start].first.to_i * 60) + @new_options[:lunch_start].last.to_i
+    (@options[:lunch_start].first.to_i * 60) + @options[:lunch_start].last.to_i
   end
 
   def total

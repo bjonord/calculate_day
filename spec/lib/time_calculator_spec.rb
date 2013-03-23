@@ -21,13 +21,6 @@ end
 describe TimeCalculator do
   subject(:time_calculator) { TimeCalculator }
   describe "#calculate" do
-    # day_start
-    # lunch start
-    # lunch end
-    # day_end
-    # break_time
-    # comment
-
     it 'will take 4 parameters and calculate the total hours' do
       hash = spec_vars_8h
       break_time = "20"

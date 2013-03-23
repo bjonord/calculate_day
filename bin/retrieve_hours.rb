@@ -9,5 +9,5 @@ break_time = args.pop
 hash = attr.zip args
 
 tc = TimeCalculator.calculate(break_time, comment, hash)
-
-p "#{tc.hours}h, #{tc.comment}"
+error = tc.errors.nil? || tc.errors.length <= 0 ? "" : "Input Error: #{tc.errors}"
+p "#{tc.hours}h, #{tc.comment} #{error}"
