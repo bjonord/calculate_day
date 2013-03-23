@@ -13,6 +13,3 @@
   - bin/  : contains the executable file
   - lib/  : contains the actual class file
   - spec/ : the examples.
-
-## License
-Do whatever you please with this project!
