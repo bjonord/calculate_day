@@ -1,14 +1,12 @@
 class TimeCalculator
   attr_reader :hours, :comment, :errors
 
-  def self.calculate(break_time = nil, comment = nil, options = {})
-    TimeCalculator.new(break_time, comment, options)
+  def self.calculate(options = {})
+    TimeCalculator.new(options)
   end
 
-  def initialize(break_time, comment, options)
+  def initialize(options)
     @options = options
-    @break_time = break_time.nil? ? 0 : break_time
-    @comment = comment
 
     set_hours
   end

@@ -23,34 +23,26 @@ describe TimeCalculator do
   describe "#calculate" do
     it 'will take 4 parameters and calculate the total hours' do
       hash = spec_vars_8h
-      break_time = "20"
-      comment = "this should be a comment"
 
       expect(time_calculator.
-             calculate(break_time, comment, hash) ).
+             calculate( hash ) ).
         to be_instance_of TimeCalculator
     end
   end
 
   describe "#initialize" do
-    it 'will return the calculated hours and the comments' do
+    it 'will return the calculated hours' do
       hash = spec_vars_8h
-      break_time = "20"
-      comment = "this should be a comment2"
-      tc = time_calculator.calculate(break_time, comment, hash )
+      tc = time_calculator.calculate( hash )
 
-      expect( tc.hours ).to eq 7.67
-      expect( tc.comment ).to eq "this should be a comment2"
+      expect( tc.hours ).to eq 8.0
     end
 
-    it 'will return the calculated hours and the comments' do
+    it 'will return the calculated hours' do
       hash = spec_vars_745h
-      break_time = "20"
-      comment = "this should be a comment2"
-      tc = time_calculator.calculate(break_time, comment, hash )
+      tc = time_calculator.calculate( hash )
 
-      expect( tc.hours ).to eq 7.42
-      expect( tc.comment ).to eq "this should be a comment2"
+      expect( tc.hours ).to eq 7.75
     end
   end
 end
